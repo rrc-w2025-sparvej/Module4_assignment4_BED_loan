@@ -1,13 +1,7 @@
-import express from "express";
+import app from "./app";
 
-const app = express();
+const PORT = 3000;
 
-// middleware to parse JSON
-app.use(express.json());
-
-// test route
-app.get("/", (req, res) => {
-  res.send("API is running");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
-
-export default app;
