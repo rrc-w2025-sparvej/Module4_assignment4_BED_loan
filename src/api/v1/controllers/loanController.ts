@@ -32,3 +32,20 @@ export const updateLoan = (
 
   res.json(loan);
 };
+
+export const deleteLoan = (
+  req: Request<{ id: string }>,
+  res: Response
+) => {
+  const id = parseInt(req.params.id);
+
+  const index = loans.findIndex((l) => l.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: "Loan not found" });
+  }
+
+  const deletedLoan = loans.splice(index, 1);
+
+  res.json(deletedLoan[0]);
+};
