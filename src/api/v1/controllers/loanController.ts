@@ -15,3 +15,20 @@ export const createLoan = (req: Request, res: Response) => {
   loans.push(newLoan);
   res.status(201).json(newLoan);
 };
+
+export const updateLoan = (
+  req: Request<{ id: string }>,
+  res: Response
+) => {
+  const id = parseInt(req.params.id);
+
+  const loan = loans.find((l) => l.id === id);
+
+  if (!loan) {
+    return res.status(404).json({ message: "Loan not found" });
+  }
+
+  Object.assign(loan, req.body);
+
+  res.json(loan);
+};
